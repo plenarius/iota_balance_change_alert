@@ -65,7 +65,7 @@ def ibca(config_path):
 
   # check if the path is to a valid file
   if not os.path.isfile(config_path):
-    raise NoConfigError, config_path
+    raise ValueError
 
   config.read(config_path)
 
