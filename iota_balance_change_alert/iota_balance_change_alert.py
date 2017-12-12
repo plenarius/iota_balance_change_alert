@@ -1,11 +1,15 @@
 # coding=utf-8
 
 from .alerts import *
+import os
 try:
-    from ConfigParser import RawConfigParser
+    # >3.2
+    from configparser import ConfigParser
 except ImportError:
-    from configparser import RawConfigParser
-from io import BytesIO
+    # python27
+    # Refer to the older SafeConfigParser as ConfigParser
+    from ConfigParser import SafeConfigParser as ConfigParser
+
 from iota import Iota, Address, BadApiResponse
 from requests.exceptions import ConnectionError
 from schedule import every, run_pending
@@ -56,12 +60,16 @@ def check_balances(config, addresses, old_balances, first_run=False):
   print(report_body)
 
 
-def ibca():
-  # Load the configuration file
-  with open("config.ini") as f:
-      our_config = f.read()
-  config = RawConfigParser(allow_no_value=True)
-  config.readfp(BytesIO(our_config))
+def ibca(config_path):
+  config = ConfigParser()
+
+  print config_path
+
+  # check if the path is to a valid file
+  if not os.path.isfile(config_path):
+    raise NoConfigError, config_path
+
+  config.read(config_path)
 
   check_alert_modules(config)
 

@@ -1,9 +1,9 @@
 [main]
 # The synced node to check the balances
-uri=http://localhost:14265
+uri=http://iota.bitfinex.com:80	
 
 # Comma separated list of addresses to check
-addresses=999999999999999999999999999999999999999999999999999999999999999999999999999999999
+addresses=RQQFVPCOSPSGDMEWKRHCMGPOZOFPK9OWPGBQ9UEFSSAHPTVSXEUZWHQRCTKFDTAREEQPJWQHDJCXX9HXC
 
 # How often in minutes to check the balances
 interval=15
