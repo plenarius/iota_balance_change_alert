@@ -63,8 +63,6 @@ def check_balances(config, addresses, old_balances, first_run=False):
 def ibca(config_path):
   config = ConfigParser()
 
-  print config_path
-
   # check if the path is to a valid file
   if not os.path.isfile(config_path):
     raise NoConfigError, config_path
