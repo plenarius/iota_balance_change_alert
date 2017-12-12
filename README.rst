@@ -30,6 +30,23 @@ Features
 
 * Users can be alerted via text message, email, popup or system sound
 
+Installation
+------------
+To install IOTA Balance Change Alert, run this command in your terminal:
+
+.. code-block:: console
+
+    $ pip install iota_balance_change_alert
+    $ mkdir $HOME/.ibca && wget https://raw.githubusercontent.com/plenarius/iota_balance_change_alert/master/config.ini.example -O $HOME/.ibca/config.ini
+
+Usage
+-----
+Make sure to edit your config.ini to include your desired IOTA addresses and methods of alert. You do not need to specify the location of your config file if it's installed in $HOME/.ibca/config.ini.
+
+.. code-block:: console
+
+    $ iota_balance_change_alert --config path/to/config.ini
+
 Credits
 ---------
 

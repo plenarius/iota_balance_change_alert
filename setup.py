@@ -17,7 +17,6 @@ requirements = [
     'schedule>=0.5.0',
     'ConfigParser;python_version<"3"',
     'configparser;python_version>="3"',
-    # TODO: put package requirements here
 ]
 
 setup_requirements = [
@@ -43,6 +42,7 @@ setup(
         ]
     },
     include_package_data=True,
+    data_files=[('config', ['config.ini.example'])],
     install_requires=requirements,
     extras_require={'Twilio': ["twilio>0.6"],},
     license="MIT license",
