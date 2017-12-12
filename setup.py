@@ -29,7 +29,7 @@ test_requirements = [
 
 setup(
     name='iota_balance_change_alert',
-    version='0.1.0',
+    version='0.1.1',
     description="IOTA Balance Change Alert checks the balance on one or more addresses at a specified interval and alerts the user if there's any change in balance.",
     long_description=readme + '\n\n' + history,
     author="James Greenhalgh",
