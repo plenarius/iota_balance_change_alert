@@ -5,9 +5,10 @@ def email_alert(config, report_body):
     from smtplib import SMTP
     email_msg = config.get('email', 'subject') + '\n\n' + report_body
 
-    smtp_server = SMTP(
-                    config.get('email', 'server'),
-                    config.get('email', 'port'))
+    smtp_email_server = config.get('email', 'server')
+    smtp_email_port = config.getint('email', 'port')
+
+    smtp_server = SMTP(smtp_email_server, smtp_email_port)
     smtp_server.ehlo()
     smtp_server.starttls()
     smtp_server.login(
