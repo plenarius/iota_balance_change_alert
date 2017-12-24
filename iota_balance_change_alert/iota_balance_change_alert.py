@@ -10,7 +10,7 @@ except ImportError:
     # Refer to the older SafeConfigParser as ConfigParser
     from ConfigParser import SafeConfigParser as ConfigParser
 
-from iota import Iota, Address, BadApiResponse
+from iota import Iota, Address, BadApiResponse, Hash
 from requests.exceptions import ConnectionError
 from schedule import every, run_pending
 from time import sleep
@@ -21,6 +21,7 @@ def check_balances(config, addresses, old_balances, first_run=False):
     report_body = ''
     txtmsg = ''
     api = Iota(config_uri)
+    response = None
 
     try:
         print('Connecting to tangle via {uri}.'.format(uri=config_uri))
@@ -31,6 +32,9 @@ def check_balances(config, addresses, old_balances, first_run=False):
     except BadApiResponse as e:
         print('{uri} is not responding properly.'.format(uri=config_uri))
         print(e)
+
+    if response is None:
+        exit(0)
 
     a = 0
     change_detected = False
@@ -85,10 +89,19 @@ def ibca(config_path):
     print('Starting IOTA balance checker for the following address(es):')
 
     for input_address in config_addresses:
+        if (len(input_address) != Hash.LEN):
+            print('Address %s is not %d characters. Skipping.' % (
+                input_address, Hash.LEN))
+            print('Make sure it does not include the checksum.')
+            continue
+
         addy = Address(input_address)
         addresses.append(addy)
-        print('%s\n' % addy.address)
+        print('%s' % addy.address)
         old_balances[addy.address] = 0
+    if len(addresses) == 0:
+        print('No valid addresses found, exiting.')
+        exit(0)
 
     if config.getboolean('twilio', 'active'):
         print(
