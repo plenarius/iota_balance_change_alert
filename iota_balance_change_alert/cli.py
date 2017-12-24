@@ -22,8 +22,8 @@ def main(config):
       The configuration information to use.
       Must be >= 0.
     """
-    from iota_balance_change_alert import ibca
-    ibca(click.format_filename(config))
+    import iota_balance_change_alert
+    iota_balance_change_alert.ibca(click.format_filename(config))
 
 
 if __name__ == '__main__':
