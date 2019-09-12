@@ -1,5 +1,5 @@
 Click>=6.0
 pyota>=2.0
 schedule>=0.5.0
-ConfigParser==3.5.0;python_version<"3"
+ConfigParser==4.0.2;python_version<"3"
 configparser==3.5.0;python_version>="3"
